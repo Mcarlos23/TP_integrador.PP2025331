@@ -1,0 +1,143 @@
+/* --- Variables de Color y Fuentes --- */
+:root {
+    --color-primario: #007BFF;
+    --color-fondo: #ffffff;
+    --color-texto-principal: #333333;
+    --color-texto-secundario: #6c757d;
+    --sombra-suave: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --fuente-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/*--- Espaciado y aplicacion de box-sizing (border-box) ---*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; 
+}
+
+/* --- Estilos Base (Mobile First) --- */
+
+.header {
+    background-color: var(--color-fondo);
+    padding: 15px;
+    box-shadow: var(--sombra-suave);
+    display: flex;
+    flex-direction: column; /* Apila los elementos verticalmente en móvil */
+    align-items: center; /* Centra todo en la vista móvil */
+    gap: 20px; /* Espacio entre el logo/títulos y la navegación */
+    width: 100%;
+}
+
+.encabezados {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Espacio entre el logo y los títulos */
+}
+
+.logo {
+    max-height: 120px; /* Tamaño del logo controlado */
+    width: auto;
+}
+
+.titulos h1, .titulos p {
+    margin: 0; /* Quita márgenes por defecto para un mejor control */
+    text-align: left;
+}
+
+.nombre-aplicacion {
+    font-size: 1.5em;
+    color: var(--color-texto-principal);
+    font-weight: 600;
+}
+
+.nombres-materia, .nombres-alumnos {
+    font-size: 0.8em;
+    color: var(--color-texto-secundario);
+}
+
+.nav-principal ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px; /* Espacio entre los botones de navegación */
+}
+
+.nav-principal a {
+    text-decoration: none;
+    color: var(--color-primario);
+    font-weight: 500;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-principal a:hover {
+    background-color: var(--color-primario);
+    color: var(--color-fondo);
+}
+
+
+/* --- Media Query para Vista de Escritorio (PC) --- */
+/* Estos estilos se aplicarán en pantallas de 768px o más de ancho */
+
+@media (min-width: 768px) {
+    .header {
+        flex-direction: row; /* Pone los elementos en fila */
+        justify-content: space-between; /* Empuja los elementos a los extremos */
+        padding: 15px 30px; /* Más padding horizontal en PC */
+    }
+
+    .titulos h1, .titulos p {
+        text-align: left; /* Alinea el texto a la izquierda en PC */
+    }
+    
+    .nombre-aplicacion {
+        font-size: 1.8em;
+    }
+
+    .nombres-materia, .nombres-alumnos {
+        font-size: 0.9em;
+    }
+}
+
+
+/* --- Estilos para el Footer --- */
+
+/* --- Estilos para el Footer --- */
+
+/* Seleccionamos el contenedor principal del footer */
+.footer {
+    /* Un color de fondo oscuro para que contraste con el resto de la página */
+    background-color: #2c3e50; 
+    color: #ecf0f1; /* Un color de texto claro (blanco roto) */
+    
+    /* Padding: Espacio interior. 40px arriba/abajo, 20px a los lados */
+    padding: 40px 20px;
+
+    /* Margin-top: Margen superior para separarlo del contenido principal de la página */
+    margin-top: 5rem; /* 5rem es una buena separación, ajústalo a tu gusto */
+    
+    /* Alinea todo el texto al centro */
+    text-align: center;
+    
+    /* Una fuente limpia y moderna */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+    /* Un borde superior sutil para un toque de elegancia */
+    border-top: 4px solid #3498db; 
+}
+
+/* Estilos para los párrafos dentro del footer */
+.footer p {
+    margin-bottom: 0.8rem; /* Añade un pequeño espacio debajo de cada párrafo */
+    line-height: 1.6; /* Mejora la legibilidad */
+}
+
+/* Estilo específico para el párrafo del copyright */
+.footer .copyright {
+    font-size: 0.8em; /* Un poco más pequeño que el resto del texto */
+    color: #bdc3c7; /* Un gris un poco más apagado para menor énfasis */
+    margin-top: 20px; /* Un poco más de espacio arriba */
+    margin-bottom: 0; /* Quita el margen inferior del último elemento */
+}
