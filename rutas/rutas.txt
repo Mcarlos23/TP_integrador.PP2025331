@@ -1,0 +1,3 @@
+Aca vamos a utilizar las rutas de express.
+Ejemplo: rutasVista.get('/', ControladorVista.vistaColeccion);
+

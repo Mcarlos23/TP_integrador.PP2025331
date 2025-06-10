@@ -1,0 +1,4 @@
+ACA SE DESARROLLA LA LOGICA DE NEGOCIO. EL MODELO USA EL SERVICIO. 
+Por ejemplo, si estuviera desarrollando un modulo de liquidacion de sueldos, aca iria la logica para calcular los sueldos. 
+
+Aca se recibe informacion del servicio. El servicio accede a la base de datos y devuelve los datos. 
