@@ -1,10 +1,12 @@
 const express = require('express');
-
 // Cargar variables de entorno desde .env. Me permite usar process.env para acceder a las variables definidas en .env
 require('dotenv').config(); 
+const methodOverride = require('method-override'); // Luego de installar method-override, crear una constante para usarlo
+const sequelize = require('./config/database.js'); // Importar la conexion a la base de datos
+const Product = require('./modelos/product.js'); // Importar modelos
+const rutasApi = require('./rutas/rutasApi.js'); // Importar las rutas de la API
+const interceptorError = require('./controladores/interceptorErrores.js'); // importar el interceptor de errores
 
-// Luego de installar method-override, crear una constante para usarlo
-const methodOverride = require('method-override');
 
 const app = express();
 
@@ -51,10 +53,35 @@ app.use(methodOverride('_method'));
 //     app.locals.hostname = req.hostname;
 //     next();
 // });
+app.use('/api', rutasApi); // Usa las rutas de la API
+app.use(interceptorError); // Interceptor de errores para manejar errores en las rutas')
 
 
-app.listen(PORT, () => {
+
+// // --- AÑADE ESTA FUNCIÓN DE PRUEBA ---
+// async function testConnection() {
+//     try {
+//         // Intenta autenticar la conexión
+//         await sequelize.authenticate();
+//         console.log('✅ Conexión a la base de datos establecida exitosamente.');
+//     } catch (error) {
+//         console.error('❌ No se pudo conectar a la base de datos:', error);
+//     } finally {
+//         // Cierra la conexión para que el script termine
+//         await sequelize.close();
+//     }
+// }
+
+app.listen(PORT, async () => {
     console.log(`Servidor escuchando en http://localhost:${PORT}`);
+    
+    // Sincronizar los modelos con la base de datos
+    try {
+        await sequelize.sync({ force: false }); // Puedo cambiar 'force' a true si necesito reiniciar la base de datos
+        console.log('✅ Modelos sincronizados con la base de datos.');
+    } catch (error) {
+        console.error('❌ Error al sincronizar los modelos con la base de datos:', error);
+    }
 });
 
 

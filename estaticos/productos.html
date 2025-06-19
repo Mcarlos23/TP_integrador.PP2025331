@@ -1,11 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/icon/libreria_logo.jpg" type="image/x-icon">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/productos.css">
+  <title>Punto Lector</title>
 </head>
 <body>
-    
+  <header id="header" class="header"></header>
+  <div id="contenedor-principal" class="contenedor-principal"> 
+    <div id="contenedor-productos-principal" class="contenedor-productos-principal">
+      <div id="contenedor-filtros" class="contenedor-filtros">
+        <button class="btn-filtro active" data-category="">Todos</button>
+        <button class="btn-filtro" data-category="Libro">Libros</button>
+        <button class="btn-filtro" data-category="Manga">Mangas</button>
+      </div>
+      <div id="contenedor-productos" class="contenedor-productos"></div> 
+      <div id="paginacion" class="paginacion"></div>
+    </div>   
+    <div id="contenedor-carrito"></div>
+  </div>
+  <footer id="footer" class="footer"></footer>
+  <script src="/js/main.js"></script>
+  <script src="/js/productos.js"></script>
 </body>
 </html>
