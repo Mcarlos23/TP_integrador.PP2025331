@@ -1,0 +1,166 @@
+/* --- 1. LAYOUT GENERAL DE LA PÁGINA DEL CARRITO --- */
+
+/* Usamos la clase .contenedor-carrito que definiste en tu HTML */
+.contenedor-carrito {
+    /* Le damos un ancho máximo para que no ocupe toda la pantalla en PC */
+    max-width: 950px;
+    height: 950px;    
+    /* Lo centramos en la página y le damos espacio arriba y abajo */
+    margin: 2rem auto;
+    
+    padding: 1rem;
+}
+
+/* Estilo para el título principal "Carrito de Compras" */
+.contenedor-carrito h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 2.5rem;
+    color: var(--color-texto, #333);
+    border-bottom: 2px solid var(--color-primario, #007BFF);
+    padding-bottom: 1rem;
+}
+
+/* --- 2. ESTILO DE LA LISTA DE PRODUCTOS --- */
+
+/* Estilo para cada fila de producto en el carrito */
+.carrito-item {
+    display: grid;
+    /* Columnas: Imagen, Info, Controles, Subtotal, Botón Remover */
+    grid-template-columns: 80px 1fr auto 100px 40px; 
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.carrito-item-img {
+    width: 80px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.carrito-item-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.carrito-item-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.carrito-item-price {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.carrito-item-controles {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+}
+
+.btn-cantidad {
+    background: transparent;
+    border: none;
+    color: var(--color-primario, #007BFF);
+    width: 35px;
+    height: 35px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.cantidad {
+    font-weight: bold;
+    font-size: 1.1rem;
+    min-width: 30px;
+    text-align: center;
+}
+
+.carrito-item-subtotal {
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-align: right;
+}
+
+.btn-remover-item {
+    background: transparent;
+    border: none;
+    color: #dc3545;
+    font-size: 1.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn-remover-item:hover {
+    transform: scale(1.2);
+}
+
+/* --- 3. ESTILOS PARA EL RESUMEN DEL CARRITO --- */
+
+/* Usamos la clase que definiste para el contenedor del resumen */
+.resumen-carrito {
+    max-width: 100%;
+    margin-left: auto; /* Empuja el contenedor a la derecha */
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+}
+
+.resumen-fila {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.resumen-fila.total {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.resumen-carrito hr {
+    border: none;
+    border-top: 1px solid #dee2e6;
+    margin: 1rem 0;
+}
+
+.btn-finalizar-compra {
+    background-color: var(--color-precio, #28a745);
+    color: white;
+    width: 100%;
+    border: none;
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.2s ease;
+    margin-top: 1rem;
+}
+
+.btn-finalizar-compra:hover {
+    background-color: #218838;
+}
+
+/* --- ESTILO PARA EL MENSAJE DE CARRITO VACÍO --- */
+
+/* Este estilo se aplicará al <p> que generas cuando el carrito está vacío */
+#lista-carrito p {
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 4rem 1rem;
+    background-color: #f8f9fa;
+    border: 2px dashed #dee2e6;
+    border-radius: 10px;
+    color: #6c757d;
+}

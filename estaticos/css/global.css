@@ -1,4 +1,4 @@
-/* --- Variables de Color y Fuentes --- */
+/* --- Definir variables de color y fuentes --- */
 :root {
     --color-primario: #007BFF;
     --color-fondo: #ffffff;
@@ -8,39 +8,54 @@
     --fuente-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/*--- Espaciado y aplicacion de box-sizing (border-box) ---*/
+/* --- Aplicar box-sizing y resetear espaciado --- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box; 
 }
 
-/* --- Estilos Base (Mobile First) --- */
+html {
+    height: 100%;
+}
+
+/* --- Configurar layout principal --- */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+/* --- Establecer estilos base (Mobile First) --- */
 
 .header {
     background-color: var(--color-fondo);
     padding: 15px;
     box-shadow: var(--sombra-suave);
     display: flex;
-    flex-direction: column; /* Apila los elementos verticalmente en móvil */
-    align-items: center; /* Centra todo en la vista móvil */
-    gap: 20px; /* Espacio entre el logo/títulos y la navegación */
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
     width: 100%;
 }
 
 .encabezados {
     display: flex;
     align-items: center;
-    gap: 30px; /* Espacio entre el logo y los títulos */
+    gap: 30px;
 }
 
 .logo {
-    max-height: 120px; /* Tamaño del logo controlado */
+    max-height: 120px;
     width: auto;
 }
 
 .titulos h1, .titulos p {
-    margin: 0; /* Quita márgenes por defecto para un mejor control */
+    margin: 0;
     text-align: left;
 }
 
@@ -60,7 +75,7 @@
     margin: 0;
     padding: 0;
     display: flex;
-    gap: 15px; /* Espacio entre los botones de navegación */
+    gap: 15px;
 }
 
 .nav-principal a {
@@ -77,19 +92,21 @@
     color: var(--color-fondo);
 }
 
+/* --- Ocultar navegación principal en página ticket --- */
+body.body-ticket .nav-principal {
+    display: none;
+}
 
-/* --- Media Query para Vista de Escritorio (PC) --- */
-/* Estos estilos se aplicarán en pantallas de 768px o más de ancho */
-
+/* --- Adaptar estilos para escritorio (min-width: 768px) --- */
 @media (min-width: 768px) {
     .header {
-        flex-direction: row; /* Pone los elementos en fila */
-        justify-content: space-between; /* Empuja los elementos a los extremos */
-        padding: 15px 30px; /* Más padding horizontal en PC */
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 15px 30px;
     }
 
     .titulos h1, .titulos p {
-        text-align: left; /* Alinea el texto a la izquierda en PC */
+        text-align: left;
     }
     
     .nombre-aplicacion {
@@ -101,43 +118,26 @@
     }
 }
 
-
-/* --- Estilos para el Footer --- */
-
-/* --- Estilos para el Footer --- */
-
-/* Seleccionamos el contenedor principal del footer */
+/* --- Establecer estilos para el footer --- */
 .footer {
-    /* Un color de fondo oscuro para que contraste con el resto de la página */
-    background-color: #2c3e50; 
-    color: #ecf0f1; /* Un color de texto claro (blanco roto) */
-    
-    /* Padding: Espacio interior. 40px arriba/abajo, 20px a los lados */
+    background-color: #2c3e50;
+    color: #ecf0f1;
     padding: 40px 20px;
-
-    /* Margin-top: Margen superior para separarlo del contenido principal de la página */
-    margin-top: 5rem; /* 5rem es una buena separación, ajústalo a tu gusto */
-    
-    /* Alinea todo el texto al centro */
     text-align: center;
-    
-    /* Una fuente limpia y moderna */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    
-    /* Un borde superior sutil para un toque de elegancia */
-    border-top: 4px solid #3498db; 
+    border-top: 4px solid #3498db;
 }
 
-/* Estilos para los párrafos dentro del footer */
+/* --- Estilizar párrafos del footer --- */
 .footer p {
-    margin-bottom: 0.8rem; /* Añade un pequeño espacio debajo de cada párrafo */
-    line-height: 1.6; /* Mejora la legibilidad */
+    margin-bottom: 0.8rem;
+    line-height: 1.6;
 }
 
-/* Estilo específico para el párrafo del copyright */
+/* --- Estilizar copyright del footer --- */
 .footer .copyright {
-    font-size: 0.8em; /* Un poco más pequeño que el resto del texto */
-    color: #bdc3c7; /* Un gris un poco más apagado para menor énfasis */
-    margin-top: 20px; /* Un poco más de espacio arriba */
-    margin-bottom: 0; /* Quita el margen inferior del último elemento */
+    font-size: 0.8em;
+    color: #bdc3c7;
+    margin-top: 20px;
+    margin-bottom: 0;
 }

@@ -1,11 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="icon/libreria_logo.jpg" type="image/x-icon">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/ticket.css">
+  <title>Punto Lector</title>
 </head>
-<body>
-    
+<body class="body-ticket">
+  <header id="header" class="header"></header>
+  <main id="contenedor-principal-ticket" class="contenedor-principal-ticket">
+    <div class="contenedor-ticket" id="contenedor-ticket"></div>
+    <div class="contenedor-botones">
+        <button id="btn-imprimir" class="btn-imprimir">Imprimir Ticket</button>
+        <button id="btn-salir" class="btn-salir">Salir</button>
+    </div>
+  </main>
+    <footer id="footer" class="footer"></footer>
+  <script src="js/main.js"></script>
+  <script src="js/ticket.js"></script>
 </body>
 </html>

@@ -1,74 +1,25 @@
+// Importar manejador de carrito
+import manejadorCarrito from './servicios/manejadorCarrito.js';
 
-// =======================
-// 1. EVENTO PRINCIPAL DOMContentLoaded
-// =======================
+// Evento para inicializar la app al cargar el DOM
 document.addEventListener("DOMContentLoaded", async () => {
-  // =======================
-  // 2. DECLARACIONES DE VARIABLES Y ELEMENTOS DEL DOM
-  // =======================
+  // Declarar variables y obtener elementos del DOM
   const contenedorProductos = document.getElementById("contenedor-productos");
   const contenedorPaginacion = document.getElementById('paginacion');
   let productosRenderizados = [];
   let paginaActual = 1;
   let categoriaActual = '';
 
-  // =======================
-  // 3. VALIDACIÓN DE ELEMENTOS DEL DOM
-  // =======================
+  // Validar existencia de elementos principales en el DOM
   if (!contenedorProductos || !contenedorPaginacion) {
     console.error("El elemento con id 'productos' no se encontró en el DOM.");
     return;
   }
 
-  // =======================
-  // 4. MANEJADOR DEL CARRITO
-  // =======================
-  const manejadorCarrito = {
-    obtenerCarrito() {
-      const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-      return carrito;
-    },
-    agregarAlCarrito(producto) {
-      const carrito = this.obtenerCarrito();
-      const productoExistente = carrito.find(item => item.id === producto.id);
-      if (productoExistente) {
-        productoExistente.cantidad += 1;
-      } else {
-        const nuevoProducto = { ...producto, cantidad: 1 };
-        carrito.push(nuevoProducto);
-      }
-      this.guardarCarrito(carrito);
-      renderizarProductos(productosRenderizados);
-      console.log(`"${producto.title}" fue agregado al carrito.`);
-      renderizarCarrito();
-      agregarEventoFinalizarCompra();
-    },
-    guardarCarrito(carrito) {
-      localStorage.setItem('carrito', JSON.stringify(carrito));
-    },
-    eliminarDelCarrito(productoId) {
-      let carrito = this.obtenerCarrito();
-      const productoExistente = carrito.find(item => item.id === productoId);
-      if (productoExistente && productoExistente.cantidad > 1) {
-        productoExistente.cantidad -= 1;
-      } else {
-        carrito = carrito.filter(item => item.id !== productoId);
-      }
-      this.guardarCarrito(carrito);
-      renderizarProductos(productosRenderizados);
-      renderizarCarrito();
-      console.log(`Producto con ID ${productoId} removido del carrito.`);
-    }
-  };
-
-  // =======================
-  // 5. FUNCIONES DE PRODUCTOS Y PAGINACIÓN
-  // =======================
+  // Función para cargar productos desde la API
   async function cargarProductos(pagina = 1, categoria = '') {
     let url = `/api/productos?page=${pagina}`;
-    if (categoria) {
-      url += `&category=${categoria}`;
-    }
+    if (categoria) url += `&category=${categoria}`;
     try {
       const respuesta = await fetch(url);
       if (respuesta.ok) {
@@ -76,7 +27,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         renderizarProductos(objetoRespuesta.productos);
         renderizarPaginacion(objetoRespuesta.totalPaginas, objetoRespuesta.paginaActual);
         productosRenderizados = objetoRespuesta.productos;
-        console.log("Total de páginas:", objetoRespuesta.totalPaginas);
+        //console.log("Total de páginas:", objetoRespuesta.totalPaginas);
       } else {
         console.error("Error al cargar los productos:", respuesta.status, respuesta.statusText);
       }
@@ -85,12 +36,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
+  // Función para mostrar productos en el DOM
   function renderizarProductos(productos) {
     if (!productos || productos.length === 0) {
       contenedorProductos.innerHTML = '<p>No se encontraron productos.</p>';
       return;
     }
-    contenedorProductos.innerHTML = '';
     contenedorProductos.innerHTML = productos.map(producto => {
       let productoEnCarrito = manejadorCarrito.obtenerCarrito().find(item => item.id === producto.id);
       let botonesHtml = '';
@@ -125,6 +76,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }).join('');
   }
 
+  // Función para mostrar la paginación
   function renderizarPaginacion(totalPaginas, paginaActual) {
     let paginacionHTML = '';
     contenedorPaginacion.innerHTML = '';
@@ -136,12 +88,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     contenedorPaginacion.innerHTML = paginacionHTML;
   }
 
-  // =======================
-  // 6. EVENTOS DE PAGINACIÓN Y PRODUCTOS
-  // =======================
+  // Evento para manejar la paginación
   contenedorPaginacion.addEventListener('click', (e) => {
     if (e.target.classList.contains('btn-paginacion')) {
-      
       const paginaSeleccionada = parseInt(e.target.getAttribute('data-page'));
       if (!isNaN(paginaSeleccionada) && paginaSeleccionada !== paginaActual) {
         paginaActual = paginaSeleccionada;
@@ -150,29 +99,24 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
+  // Evento para agregar o quitar productos del carrito
   contenedorProductos.addEventListener('click', (e) => {
-    if (e.target.classList.contains('btn-agregar-carrito')) {
-      const productoId = parseInt(e.target.getAttribute('data-product-id'));
+    if (e.target.matches('.btn-agregar-carrito')) {
+      const productoId = parseInt(e.target.dataset.productId);
       const producto = productosRenderizados.find(p => p.id === productoId);
       if (producto) {
         manejadorCarrito.agregarAlCarrito(producto);
-        console.log(`Producto ${producto.title} agregado al carrito.`);
-      } else {
-        console.error("Producto no encontrado en los productos renderizados.");
+        renderizarUI();
       }
-    } else if (e.target.classList.contains('btn-remover-carrito')) {
-      const productoId = parseInt(e.target.getAttribute('data-product-id'));
+    } else if (e.target.matches('.btn-remover-carrito')) {
+      const productoId = parseInt(e.target.dataset.productId);
       manejadorCarrito.eliminarDelCarrito(productoId);
-      console.log(`Producto con ID ${productoId} removido del carrito.`);
-      cargarProductos(paginaActual, categoriaSeleccionada);
+      renderizarUI();
     }
   });
 
-  // =======================
-  // 7. CARRITO: RENDER Y EVENTOS
-  // =======================
+  // Función para mostrar el carrito
   const contenedorCarrito = document.getElementById('contenedor-carrito');
-
   function renderizarCarrito() {
     const carrito = manejadorCarrito.obtenerCarrito();
     if (carrito.length === 0) {
@@ -202,10 +146,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         <strong>Total:</strong>
         <strong>$${total.toFixed(2)}</strong>
       </div>
-      <button class="btn-finalizar-compra">Finalizar Compra</button>
+      <button class="btn-finalizar-compra">Continuar</button>
     `;
   }
 
+  // Función para agregar evento de finalizar compra
   function agregarEventoFinalizarCompra() {
     const botonFinalizarCompra = contenedorCarrito.querySelector('.btn-finalizar-compra');
     if (botonFinalizarCompra) {
@@ -215,16 +160,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
-  // =======================
-  // 8. FILTROS DE CATEGORÍA
-  // =======================
+  // Evento para filtrar productos por categoría
   const contenedorFiltros = document.getElementById('contenedor-filtros');
   if (contenedorFiltros) {
     contenedorFiltros.addEventListener('click', (e) => {
       if (e.target.classList.contains('btn-filtro')) {
         const categoriaSeleccionada = e.target.getAttribute('data-category');
         categoriaActual = categoriaSeleccionada;
-
         paginaActual = 1;
         contenedorProductos.innerHTML = '<p>Cargando productos...</p>';
         const botonesFiltro = contenedorFiltros.querySelectorAll('.btn-filtro');
@@ -237,9 +179,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  // =======================
-  // 9. INICIALIZACIÓN
-  // =======================
+  // Función para actualizar la vista general
+  function renderizarUI() {
+    renderizarProductos(productosRenderizados);
+    renderizarCarrito();
+    agregarEventoFinalizarCompra();
+  }
+
+  // Inicializar la app: cargar productos y carrito
   manejadorCarrito.obtenerCarrito();
   cargarProductos(paginaActual);
   renderizarCarrito();
