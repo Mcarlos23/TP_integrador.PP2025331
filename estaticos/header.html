@@ -1,6 +1,7 @@
 
 <div class="encabezados">
-    <img src="/logos/logo_modo_claro.png" alt="Logo de la Aplicación" class="logo">
+    <img src="logos/logo_modo_claro.png" alt="Logo de la Aplicación" class="logo logo-claro" id="logo-claro">
+    <img src="logos/logo_modo_oscuro.png" alt="Logo de la Aplicación" class="logo logo-oscuro" id="logo-oscuro">
     <div class="titulos">
         <h1 class="nombre-aplicacion">Punto Lector</h1>
         <p class="nombres-materia">Programacion III, DIV 331</p>
@@ -8,9 +9,23 @@
         <p class="nombres-alumnos">Carlos Marquez</p>
     </div>
 </div>
+<div class="header-acciones" id="header-acciones">    
 <nav class="nav-principal">
     <ul>
         <li><a href="index.html">Inicio</a></li>
         <li><a href="productos.html">Productos</a></li>
     </ul>
 </nav>
+<button id="theme-toggle" class="btn-modo" title="Cambiar tema">
+        <span class="icon-sun">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                <path d="M12 2.25a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 0112 2.25zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.106a.75.75 0 011.06-1.06l1.06 1.06a.75.75 0 01-1.06 1.06l-1.06-1.06zM21.75 12a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5a.75.75 0 01.75.75zM17.834 17.834a.75.75 0 011.06 1.06l-1.06 1.06a.75.75 0 01-1.06-1.06l1.06-1.06zM12 19.5a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 0112 19.5zM4.966 17.834a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 111.06-1.06l1.06 1.06zM2.25 12a.75.75 0 01.75-.75h1.5a.75.75 0 010 1.5H3a.75.75 0 01-.75-.75zM6.106 4.966a.75.75 0 011.06-1.06l1.06 1.06a.75.75 0 11-1.06 1.06L6.106 4.966z" />
+            </svg>
+        </span>
+        <span class="icon-moon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                <path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-3.462 1.68-6.57 4.29-8.497a.75.75 0 01.819.162z" clip-rule="evenodd" />
+            </svg>
+        </span>
+    </button>
+</div>

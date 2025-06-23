@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   contenedorListaCarrito.addEventListener('click', (e) => {
     const target = e.target;
     const productoId = parseInt(target.dataset.productId);
-    console.log("Producto ID:", productoId);
+    //console.log("Producto ID:", productoId);
 
     if (target.matches('.btn-cantidad[data-action="aumentar"]')) {
       manejadorCarrito.aumentarCantidad(productoId);
@@ -86,8 +86,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       const nombreCliente = localStorage.getItem('nombreCliente');
       const carrito = manejadorCarrito.obtenerCarrito();
 
-      console.log("Nombre del cliente:", nombreCliente);
-      console.log("Carrito de compras:", carrito);
+      //console.log("Nombre del cliente:", nombreCliente);
+      //console.log("Carrito de compras:", carrito);
 
       if (carrito.length === 0) {
         alert("El carrito está vacío.");

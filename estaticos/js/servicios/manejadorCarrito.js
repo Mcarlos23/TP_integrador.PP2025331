@@ -22,7 +22,7 @@ const manejadorCarrito = {
       const carrito = this.obtenerCarrito();
       const productoExistente = carrito.find(item => item.id === productoId);
       if (productoExistente) {
-        console.log(productoExistente);
+        //console.log(productoExistente);
           productoExistente.cantidad++;
           this.guardarCarrito(carrito);
       } else {

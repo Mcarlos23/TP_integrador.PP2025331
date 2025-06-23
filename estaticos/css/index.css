@@ -1,91 +1,89 @@
-/* --- Estilos para el contenedor principal de la pantalla de inicio --- */
+/* Definicion de contenedor principal */
 .contenedor-inicio {
-  /* Flexbox centra el contenido */
   display: flex;
-  flex-direction: column; /* Apila los elementos verticalmente */
-  justify-content: center; /* Centra verticalmente */
-  align-items: center;     /* Centra horizontalmente */
-  
-  /* Ocupa casi toda la altura de la pantalla */
-  min-height: 80vh; 
-  text-align: center; /* Centra el texto de los elementos hijos */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  text-align: center;
   padding: 20px;
 }
 
-/* --- Estilos para el mensaje de bienvenida --- */
+/* Definicion de mensaje de bienvenida */
 .mensaje-bienvenida h1 {
-  font-size: 2.5rem; /* Tamaño adaptable al tamaño base */
-  color: #333;  
-  margin-bottom: 0.5em; /* Margen inferior relativo al tamaño de la fuente */
+  font-size: 2.5rem;
+  color: var(--color-texto-principal);
+  margin-bottom: 0.5em;
 }
 
 .mensaje-bienvenida p {
   font-size: 1.1rem;
-  color: #666; 
-  max-width: 500px; /* Limita el ancho del texto en pantallas grandes */
-  margin-bottom: 2rem; /* Espacio entre el mensaje y el formulario */
+  color: var(--color-texto-secundario);
+  max-width: 500px;
+  margin-bottom: 2rem;
 }
 
-/* --- Estilos para el formulario --- */
+/* Definicion de formulario de inicio */
 #formulario-inicio {
-  width: 100%; /* Ocupa todo el ancho del contenedor padre */
-  max-width: 400px; 
+  width: 100%;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
-  gap: 1rem; /* Espacio entre los elementos del formulario */
+  gap: 1rem;
 }
 
 #formulario-inicio label {
   font-weight: bold;
   font-size: 1rem;
-  color: #444;
-  /* Alinea el texto a la izquierda */
-  text-align: left; 
+  color: var(--color-texto-principal);
+  text-align: left;
 }
 
+/* Colores para input de texto */
 #formulario-inicio input[type="text"] {
   width: 100%;
-  padding: 12px 15px; /* Relleno interno para mayor comodidad */
-  border: 1px solid #ccc;
-  border-radius: 8px; /* Bordes redondeados */
+  padding: 12px 15px;
+  border: 1px solid var(--color-borde);
+  border-radius: 8px;
   font-size: 1rem;
-  box-sizing: border-box; /* El padding no afecta el ancho total */
-  transition: border-color 0.3s, box-shadow 0.3s; /* Transición suave al enfocar */
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: var(--color-superficie);
+  color: var(--color-texto-principal);
 }
 
-/* Efecto al enfocar el input */
+/* Efectos de foco en input */
 #formulario-inicio input[type="text"]:focus {
-  outline: none; /* Elimina el borde por defecto del navegador */
-  border-color: #007BFF; 
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
+  outline: none;
+  border-color: var(--color-primario);
+  box-shadow: var(--sombra-foco);
 }
 
+/* Definicion de boton submit */
 #formulario-inicio button[type="submit"] {
   padding: 12px 20px;
-  background-color: #007BFF; /* Color de acento principal */
-  color: white; /* Texto blanco */
+  background-color: var(--color-primario);
+  color: var(--color-superficie);
   font-size: 1.1rem;
   font-weight: bold;
   border: none;
   border-radius: 8px;
-  cursor: pointer; /* Cambia el cursor al pasar por encima */
-  transition: background-color 0.3s, transform 0.2s; /* Transición para el hover */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
-/* Efecto al pasar el mouse por encima del botón */
+/* Efectos de hover en boton */
 #formulario-inicio button[type="submit"]:hover {
-  background-color: #0056b3; 
-  transform: translateY(-2px); /* Eleva ligeramente el botón */
+  background-color: var(--color-primario-hover);
+  transform: translateY(-2px);
 }
 
-/* --- Media Query para Responsividad --- */
-/* Aplica estas reglas si la pantalla tiene un ancho de 768px o más */
+/* Media query para responsividad en pantallas grandes */
 @media (min-width: 768px) {
   .mensaje-bienvenida h1 {
-    font-size: 3.5rem; /* Título más grande en pantallas de escritorio */
+    font-size: 3.5rem;
   }
-
   .mensaje-bienvenida p {
-    font-size: 1.25rem; /* Párrafo de descripción más grande */
+    font-size: 1.25rem;
   }
 }

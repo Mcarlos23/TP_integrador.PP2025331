@@ -1,104 +1,103 @@
-/* --- Estilos para la página y el contenedor del Ticket --- */
-
-/* Usamos una fuente monospace para el look "contable" */
+/* Definición de fuente y layout principal */
 .contenedor-principal-ticket {
     font-family: 'Courier New', Courier, monospace;
-    background-color: #f4f7f6; /* Un fondo de página muy sutil */
-    padding: 1rem;
-    padding: 2rem;
+    padding: 2rem 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+/* Contenedor del ticket, colores y sombra */
 #contenedor-ticket {
     max-width: 700px;
-    margin: 2rem auto;
-    background-color: #ffffff;
-    border: 1px solid #dfe4ea;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+    margin: 0 auto;
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    box-shadow: var(--sombra-suave);
     padding: 2.5rem 3rem;
 }
 
-/* --- Estilos para el contenido del Ticket --- */
-
+/* Título principal del ticket */
 #contenedor-ticket h1 {
     text-align: center;
-    color: #2c3e50;
+    color: var(--color-texto-principal);
     font-size: 1.6rem;
     margin-bottom: 0.5rem;
 }
 
+/* Subtítulo del ticket */
 .subtitulo-ticket {
     text-align: center;
-    color: #6c757d;
+    color: var(--color-texto-secundario);
     margin-top: 0;
     margin-bottom: 2rem;
 }
 
+/* Información superior del ticket */
 .ticket-info {
     display: flex;
     justify-content: space-between;
-    color: #6c757d;
+    color: var(--color-texto-secundario);
     font-size: 0.9rem;
     padding-bottom: 1rem;
 }
 
+/* Separador con línea punteada */
 #contenedor-ticket hr {
     border: none;
-    border-top: 1px dashed #ced4da; /* Línea punteada, como en un recibo */
+    border-top: 1px dashed var(--color-borde);
     margin: 1rem 0;
 }
 
-/* --- La Magia de CSS Grid para la lista de productos --- */
+/* Contenedor de items */
 .ticket-items-container {
     margin: 1.5rem 0;
 }
 
+/* Fila de item del ticket */
 .ticket-item {
     display: grid;
-    /* Columnas: Cantidad (fija) | Título (flexible) | Precio (auto) */
     grid-template-columns: 50px 1fr auto;
     gap: 1rem;
     padding: 0.8rem 0;
-    border-bottom: 1px solid #f1f3f5; /* Línea muy suave entre productos */
+    border-bottom: 1px solid var(--color-fondo);
 }
 
 .ticket-item:last-child {
     border-bottom: none;
 }
 
-.item-quantity {
+/* Estilos de cantidad, título y precio */
+.item-quantity, .item-title, .item-price {
     font-weight: 700;
+    color: var(--color-texto-principal);
 }
 
 .item-title {
     font-weight: 500;
-    /* Permite que el texto se ajuste si es muy largo */
     word-break: break-word;
 }
 
 .item-price {
-    font-weight: 700;
     text-align: right;
 }
 
-/* --- Sección del Total --- */
+/* Sección de totales */
 .ticket-total {
     display: flex;
-    flex-direction: column; /* Apilamos los textos para alinearlos a la derecha */
-    align-items: flex-end; /* Alineación a la derecha */
+    flex-direction: column;
+    align-items: flex-end;
     margin-top: 1.5rem;
 }
 
 .ticket-total strong {
     font-size: 1.1rem;
-    color: #2c3e50;
+    color: var(--color-texto-principal);
 }
 
 .ticket-total strong:last-child {
     font-size: 1.8rem;
-    border-top: 2px solid #2c3e50;
+    border-top: 2px solid var(--color-texto-principal);
     padding-top: 0.5rem;
     margin-top: 0.5rem;
 }
@@ -107,100 +106,81 @@
 .ticket-footer {
     text-align: center;
     margin-top: 3rem;
-    color: #6c757d;
+    color: var(--color-texto-secundario);
     font-size: 0.8rem;
 }
 
-/* --- Media Query para Móviles --- */
+/* Adaptación para móviles */
 @media (max-width: 600px) {
     #contenedor-ticket {
-        /* Reducimos el padding en pantallas pequeñas */
         padding: 1.5rem;
     }
-
     .ticket-item {
-        /* Hacemos que la grilla sea un poco más compacta */
         grid-template-columns: 35px 1fr auto;
         gap: 0.8rem;
     }
-
     #contenedor-ticket h1 {
         font-size: 1.4rem;
     }
-
     .ticket-total strong:last-child {
         font-size: 1.5rem;
     }
 }
 
-/* --- ESTILOS PARA LA SECCIÓN DE BOTONES DE ACCIÓN --- */
-
-/* Contenedor que envuelve a los botones */
+/* Botones de acción */
 .contenedor-botones {
-    display: flex;          /* Activa Flexbox */
-    justify-content: center;/* Centra los botones horizontalmente en el espacio disponible */
-    gap: 1.5rem;            /* Crea un espacio de 1.5rem entre los botones */
-    margin-top: 2.5rem;       /* Añade un margen superior para separarlo del ticket */
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
 }
 
-/* Estilo base compartido por AMBOS botones */
+/* Estilos base de botones */
 .btn-imprimir,
 .btn-salir {
-    padding: 12px 30px; /* Espaciado interno generoso */
+    padding: 12px 30px;
     border: none;
-    border-radius: 8px; /* Bordes redondeados */
+    border-radius: 8px;
     font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
     text-align: center;
-    transition: all 0.3s ease; /* Transición suave para todos los efectos */
+    transition: all 0.3s ease;
 }
 
-/* Estilo al pasar el mouse sobre CUALQUIER botón */
+/* Efectos hover en botones */
 .btn-imprimir:hover,
 .btn-salir:hover {
-    transform: translateY(-3px); /* Efecto de "levantarse" */
+    transform: translateY(-3px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* --- ESTILOS ESPECÍFICOS --- */
-
-/* Botón de Imprimir (Acción Primaria) */
+/* Colores de botón imprimir */
 .btn-imprimir {
-    background-color: var(--color-primario, #007BFF); /* Color principal del tema */
-    color: white;
+    background-color: var(--color-primario);
+    color: var(--color-superficie);
     box-shadow: 0 4px 12px rgba(0, 123, 255, 0.25);
 }
 
 .btn-imprimir:hover {
-    background-color: #0056b3; /* Un azul más oscuro */
+    background-color: var(--color-primario-hover);
 }
 
-/* Botón de Salir (Acción Secundaria) */
+/* Colores de botón salir */
 .btn-salir {
-    background-color: #6c757d; /* Un color gris neutro */
-    color: white;
+    background-color: var(--color-texto-secundario);
+    color: var(--color-superficie);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .btn-salir:hover {
-    background-color: #5a6268; /* Un gris más oscuro */
+    background-color: var(--color-secundario-hover);
 }
 
-
-/* ============================================== */
-/* --- ESTILOS QUE SE APLICAN SÓLO AL IMPRIMIR --- */
-/* ============================================== */
-
+/* Ocultar botones al imprimir */
 @media print {
-
-    /* 1. Ocultamos todo lo que NO es el ticket */
-    /* Usamos !important para asegurar que esta regla tenga prioridad */
-
-    .btn-imprimir, 
-    .btn-salir {
+    .contenedor-botones{
         display: none !important;
     }
-
-    
+    /* ... (resto de estilos de impresión) ... */
 }

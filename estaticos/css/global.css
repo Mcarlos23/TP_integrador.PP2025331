@@ -1,143 +1,218 @@
-/* --- Definir variables de color y fuentes --- */
+/* --- 1. Variables: Colores y Fuentes --- */
+
 :root {
-    --color-primario: #007BFF;
-    --color-fondo: #ffffff;
-    --color-texto-principal: #333333;
+    /* Tema claro (por defecto) */
+
+    /* Colores principales */
+    --color-fondo: #f8f9fa;
+    --color-superficie: #ffffff;
+    --color-texto-principal: #212529;
     --color-texto-secundario: #6c757d;
-    --sombra-suave: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --color-borde: #dee2e6;
+
+    /* Colores de acento y estado */
+    --color-primario: #007BFF;
+    --color-primario-hover: #0056b3;
+    --color-exito: #28a745;
+    --color-exito-hover: #218838;
+    --color-atencion: #dc3545;
+    
+    /* Footer */
+    --color-footer-fondo: #2c3e50;
+    --color-footer-texto: #ecf0f1;
+    
+    /* Efectos visuales */
+    --sombra-suave: 0 4px 8px rgba(0, 0, 0, 0.05);
+    --sombra-foco: 0 0 8px rgba(0, 123, 255, 0.4);
+    --superficie-hover: #e9ecef;
+
+    /* Tipografía */
     --fuente-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* --- Aplicar box-sizing y resetear espaciado --- */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box; 
+/* Tema oscuro: <html data-theme="dark"> */
+[data-theme="dark"] {
+    /* Colores principales */
+    --color-fondo: #121212;
+    --color-superficie: #1e1e1e;
+    --color-texto-principal: #e0e0e0;
+    --color-texto-secundario: #a0a0a0;
+    --color-borde: #495057;
+
+    /* Colores de acento y estado */
+    --color-primario: #4dabf7;
+    --color-primario-hover: #74c0fc;
+    --color-exito: #20c997;
+    --color-exito-hover: #12b886;
+    --color-atencion: #ff6b6b;
+
+    /* Footer */
+    --color-footer-fondo: #1a1a1a;
+    --color-footer-texto: #a0a0a0;
+
+    /* Efectos visuales */
+    --sombra-suave: 0 4px 15px rgba(0, 0, 0, 0.2);
+    --sombra-foco: 0 0 8px rgba(77, 171, 247, 0.5);
+    --superficie-hover: #343a40;
 }
 
-html {
-    height: 100%;
-}
-
-/* --- Configurar layout principal --- */
+/* --- 2. Reset y layout principal --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { height: 100%; }
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-}
-
-main {
-    flex: 1;
-}
-
-/* --- Establecer estilos base (Mobile First) --- */
-
-.header {
     background-color: var(--color-fondo);
+    color: var(--color-texto-principal);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+main { flex: 1; }
+
+/* --- 3. Header y navegación (mobile-first) --- */
+.header {
+    background-color: var(--color-superficie);
     padding: 15px;
     box-shadow: var(--sombra-suave);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
     width: 100%;
 }
 
 .encabezados {
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 20px;
 }
 
 .logo {
-    max-height: 120px;
+    height: 80px;
     width: auto;
-}
-
-.titulos h1, .titulos p {
-    margin: 0;
-    text-align: left;
-}
-
-.nombre-aplicacion {
-    font-size: 1.5em;
-    color: var(--color-texto-principal);
-    font-weight: 600;
-}
-
-.nombres-materia, .nombres-alumnos {
-    font-size: 0.8em;
-    color: var(--color-texto-secundario);
+    object-fit: contain;
 }
 
 .nav-principal ul {
     list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
-    gap: 15px;
+    gap: 1rem;
 }
 
 .nav-principal a {
-    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
     color: var(--color-primario);
-    font-weight: 500;
-    padding: 8px 15px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    border: 2px solid var(--color-primario);
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
 }
 
 .nav-principal a:hover {
     background-color: var(--color-primario);
-    color: var(--color-fondo);
+    color: var(--color-superficie);
 }
 
-/* --- Ocultar navegación principal en página ticket --- */
-body.body-ticket .nav-principal {
-    display: none;
-}
-
-/* --- Adaptar estilos para escritorio (min-width: 768px) --- */
+/* Header en PC */
 @media (min-width: 768px) {
     .header {
         flex-direction: row;
         justify-content: space-between;
         padding: 15px 30px;
     }
-
-    .titulos h1, .titulos p {
-        text-align: left;
-    }
-    
-    .nombre-aplicacion {
-        font-size: 1.8em;
-    }
-
-    .nombres-materia, .nombres-alumnos {
-        font-size: 0.9em;
-    }
 }
 
-/* --- Establecer estilos para el footer --- */
+/* --- 4. Footer --- */
 .footer {
-    background-color: #2c3e50;
-    color: #ecf0f1;
+    background-color: var(--color-footer-fondo);
+    color: var(--color-footer-texto);
     padding: 40px 20px;
     text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    border-top: 4px solid #3498db;
+    border-top: 4px solid var(--color-primario);
 }
 
-/* --- Estilizar párrafos del footer --- */
-.footer p {
-    margin-bottom: 0.8rem;
-    line-height: 1.6;
+/* Oculta navegación en página ticket */
+body.body-ticket .nav-principal {
+    display: none;
 }
 
-/* --- Estilizar copyright del footer --- */
-.footer .copyright {
-    font-size: 0.8em;
-    color: #bdc3c7;
-    margin-top: 20px;
-    margin-bottom: 0;
+
+/* --- Estilos para cambiar el modo de visualización --- */
+
+/* Contenedor para la navegación y el botón de tema */
+.header-acciones {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Estilo del botón de modo oscuro/claro */
+.btn-modo {
+    background-color: var(--color-fondo); /* Usa el color de fondo de la página */
+    border: 2px solid var(--color-borde);
+    border-radius: 50px; /* Lo hacemos circular */
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-modo:hover {
+    border-color: var(--color-primario);
+}
+
+/* Estilo para los íconos SVG dentro del botón */
+.btn-modo svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--color-texto-secundario); /* El color del ícono usa una variable */
+    transition: fill 0.3s ease;
+}
+.btn-modo:hover svg {
+    fill: var(--color-primario);
+}
+
+/* --- LA MAGIA PARA MOSTRAR/OCULTAR ÍCONOS --- */
+
+/* Por defecto (tema claro): mostramos la LUNA (para cambiar a oscuro) */
+.icon-sun { display: none; }
+.icon-moon { display: block; }
+
+/* Cuando el tema es oscuro: mostramos el SOL (para cambiar a claro) */
+[data-theme="dark"] .icon-sun { display: block; }
+[data-theme="dark"] .icon-moon { display: none; }
+
+/* --- Estilos para el Logo Dinámico --- */
+
+/* Estilo base para ambos logos para que tengan el mismo tamaño */
+.logo {
+    height: 80px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Por defecto (tema claro):
+   Mostramos el logo claro y ocultamos el oscuro. */
+.logo-claro {
+    display: block;
+}
+.logo-oscuro {
+    display: none;
+}
+
+
+/* Cuando el tema es oscuro (html[data-theme="dark"]):
+   Hacemos lo contrario: ocultamos el logo claro y mostramos el oscuro. */
+[data-theme="dark"] .logo-claro {
+    display: none;
+}
+
+[data-theme="dark"] .logo-oscuro {
+    display: block;
 }
