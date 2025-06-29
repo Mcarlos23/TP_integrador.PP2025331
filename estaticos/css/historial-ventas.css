@@ -1,0 +1,124 @@
+/* Layout general de la página: define el ancho y el centrado del contenedor principal */
+.contenedor-ventas {
+  max-width: 900px; /* Define un ancho cómodo para la lista de ventas */
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+/* Estilo para el título principal de la página de ventas */
+.contenedor-ventas h1 {
+  text-align: center;
+  color: var(--color-texto-principal);
+  font-size: 2.2rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+/* Contenedor que muestra las tarjetas de venta generadas dinámicamente */
+#ventas {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Muestra espacio entre cada tarjeta de venta */
+}
+
+/* Estilo de cada tarjeta de venta individual */
+.tarjeta-venta {
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-borde, 10px);
+  box-shadow: var(--sombra-suave);
+  padding: 1.5rem 2rem;
+}
+
+/* Encabezado de la tarjeta de venta: muestra título y fecha */
+.tarjeta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+/* Título de la tarjeta de venta */
+.tarjeta-header h2 {
+  color: var(--color-primario);
+  font-size: 1.5rem;
+}
+
+/* Muestra la fecha de la venta */
+.fecha-venta {
+  color: var(--color-texto-secundario);
+  font-size: 0.9rem;
+}
+
+/* Muestra el resumen de la venta: total y otros datos */
+.resumen {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+  font-size: 1.1rem;
+}
+
+/* Muestra el total de la venta en negrita */
+.sale-total {
+  font-weight: bold;
+}
+
+/* Estilos para la lista de productos dentro de cada venta */
+.contenedor-productos h4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: var(--color-texto-secundario);
+  font-weight: 600;
+}
+
+/* Muestra la lista de productos de la venta */
+.lista-productos {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+/* Muestra cada producto en la lista de productos */
+.producto {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--color-fondo);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Muestra la imagen de portada del producto */
+.producto-cover {
+  width: 40px;
+  height: 55px;
+  object-fit: cover;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+/* Contenedor de la información del producto: título y precio */
+.producto-info {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Muestra el título del producto */
+.producto-titulo {
+  color: var(--color-texto-principal);
+  font-weight: 500;
+}
+
+/* Muestra el precio del producto */
+.producto-precio {
+  color: var(--color-texto-secundario);
+  font-size: 0.9rem;
+  white-space: nowrap; /* Hace que el precio no se divida en dos líneas */
+}

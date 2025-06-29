@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Admin - Dashboard</title>
+        <link rel="stylesheet" href="/css/global.css">
+        <link rel="stylesheet" href="/css/admin-dashboard.css">
+        <link rel="icon" href="/icon/libreria_logo.jpg" type="image/x-icon">
+    </head>
+    <body class="pagina-dashboard">
+        <%- include('header.ejs', { title: 'Dashboard' }) %>
+        <main class="contenedor-dashboard">
+            <div class="dashboard-header">
+                <h1>Gestión de Productos</h1>
+                <a href="/admin/productos/alta" class="btn-accion btn-alta">+ Agregar Producto</a>
+            </div>
+            <div class="filtros-container">
+                <a href="/admin/dashboard" class="btn-filtro <%= !categoria ? 'active' : '' %>">Todos</a>
+                <a href="/admin/dashboard?category=Libro" class="btn-filtro <%= categoria === 'Libro' ? 'active' : '' %>">Libros</a>
+                <a href="/admin/dashboard?category=Manga" class="btn-filtro <%= categoria === 'Manga' ? 'active' : '' %>">Mangas</a>
+            </div>
+            <div class="tabla-container">
+                <table class="tabla-productos">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Portada</th>
+                            <th>Título</th>
+                            <th>Autor</th>
+                            <th>Precio</th>
+                            <th>Stock</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (productos && productos.length > 0) { %>
+                            <% productos.forEach(producto => { %>
+                                <tr>
+                                    <td data-label="ID"><%= producto.id %></td>
+                                    <td data-label="Portada">
+                                        <img src="<%= producto.cover_image_url %>" alt="Portada de <%= producto.title %>" class="image-cover">
+                                    </td>
+                                    <td data-label="Título"><%= producto.title %></td>
+                                    <td data-label="Autor"><%= producto.author %></td>
+                                    <td data-label="Precio">$<%= parseFloat(producto.price).toFixed(2) %></td>
+                                    <td data-label="Stock"><%= producto.stock %></td>
+                                    <td data-label="Estado"> 
+                                        <% if (producto.isActive) { %>
+                                            <span class="status status-activo">Activo</span>
+                                        <% } else { %>
+                                            <span class="status status-inactivo">Inactivo</span>
+                                        <% } %>
+                                    </td>
+                                    <td class="acciones" data-label="Acciones">
+                                        <div class="contenedor-acciones">
+                                            <a href="/admin/productos/editar/<%= producto.id %>" class="btn-accion btn-editar">Editar</a>
+                                            <!-- Aca entra en juego app.use(methodOverride('_method')) aplicado en el servidor
+                                            para poder usar el método PATCH en el formulario de estado -->
+                                            <form class="form-estado-producto"
+                                            action="/admin/productos/estado/<%= producto.id %>?_method=PATCH" 
+                                            method="POST"
+                                            data-title="<%= producto.title %>">
+                                                <button type="submit" class="btn-accion <%= producto.isActive ? 'btn-baja' : 'btn-alta' %>">
+                                                    <%= producto.isActive ? 'Dar de Baja' : 'Activar' %>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <% }); %>
+                        <% } else { %>
+                            <tr>
+                                <td colspan="8" class="no-productos">No se han encontrado productos.</td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        <%- include('footer.ejs') %>
+        <script type="module" src="/js/main.js"></script>
+        <script type="module" src="/js/admin-dashboard.js"></script>
+    </body>
+</html>

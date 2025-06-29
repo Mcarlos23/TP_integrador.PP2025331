@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>Panel de Administrador</title>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/admin-login.css">
+    <link rel="icon" href="/icon/libreria_logo.jpg" type="image/x-icon">
+  </head>
+  <body>
+    <!-- Include detiene el renderizado para buscar el archivo especificado. -->
+    <%- include('header.ejs') %>
+    <main>
+      <div class="login-container">
+        <h2>Acceso de Administrador</h2>
+
+        <% if (typeof error !== 'undefined' && error) { %>
+          <p class="error-message"><%= error %></p>
+        <% } %>
+
+        <form action="/admin/login" method="POST">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" name="password" required>
+          </div>
+          <button type="submit" class="btn-login">Ingresar</button>
+        </form>
+        <hr>
+        <button id="btn-acceso-rapido" class="btn-rapido">Acceso Rápido (Tester)</button>
+      </div>
+    </main>
+    <%- include('footer.ejs') %>
+    <script type="module" src="/js/main.js"></script>
+    <script>
+      // Script para el botón de acceso rápido
+      document.getElementById('btn-acceso-rapido').addEventListener('click', () => {
+        document.getElementById('email').value = 'admin@puntoreader.com';
+        document.getElementById('password').value = 'password123'; // Datos para ingresar con el usuario creado en la DB
+      });
+    </script>
+  </body>
+</html>

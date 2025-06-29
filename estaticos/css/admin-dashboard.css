@@ -1,0 +1,239 @@
+/* --- 1. CONTENEDOR Y ENCABEZADO --- */
+.contenedor-dashboard {
+  max-width: 1400px;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+}
+
+/* Encabezado del dashboard */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Evita desbordes en pantallas medianas */
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.dashboard-header h1 {
+  font-size: 2rem;
+  color: var(--color-texto-principal);
+}
+
+/* Botón para agregar elementos */
+.btn-alta {
+  background-color: var(--color-exito);
+  color: var(--color-superficie);
+  text-decoration: none;
+  padding: 12px 22px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+.btn-alta:hover {
+  background-color: var(--color-exito-hover);
+}
+
+/* --- 2. FILTROS DE CATEGORÍA --- */
+.filtros-container {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+/* Botón de filtro */
+.btn-filtro {
+  padding: 8px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background-color: transparent;
+  color: var(--color-texto-secundario);
+  border: 2px solid var(--color-borde);
+  border-radius: 50px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-filtro.active,
+.btn-filtro:hover {
+  color: var(--color-primario);
+  border-color: var(--color-primario);
+  background-color: var(--superficie-hover);
+}
+
+/* --- 3. TABLA DE PRODUCTOS (ESCRITORIO) --- */
+.tabla-container {
+  width: 100%;
+}
+
+/* Tabla de productos */
+.tabla-productos {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--color-superficie);
+  box-shadow: var(--sombra-suave);
+  font-size: 0.95rem;
+}
+
+.tabla-productos th,
+.tabla-productos td {
+  padding: 14px 16px;
+  border: 1px solid var(--color-borde);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.tabla-productos thead {
+  background-color: var(--color-fondo);
+}
+
+/* Ancho de columnas */
+.tabla-productos th:nth-child(1) { width: 5%; }   /* ID */
+.tabla-productos th:nth-child(2) { width: 10%; }  /* Portada */
+.tabla-productos th:nth-child(3) { width: 30%; }  /* Título */
+.tabla-productos th:nth-child(8) { min-width: 210px; } /* Acciones */
+
+/* Imagen de portada */
+.image-cover {
+  width: 50px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* Estado del producto */
+.status {
+  padding: 5px 10px;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 0.8rem;
+  text-align: center;
+  white-space: nowrap;
+}
+.status-activo {
+  background-color: rgba(40, 167, 69, 0.15);
+  color: #1a642d;
+}
+.status-inactivo {
+  background-color: rgba(220, 53, 69, 0.15);
+  color: #721c24;
+}
+[data-theme="dark"] .status-activo {
+  background-color: rgba(32, 201, 151, 0.2);
+  color: #63e6be;
+}
+[data-theme="dark"] .status-inactivo {
+  background-color: rgba(255, 107, 107, 0.2);
+  color: #ff8787;
+}
+
+/* Acciones en tabla */
+.contenedor-acciones {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.contenedor-acciones form {
+  margin: 0;
+}
+
+/* Botones de acción */
+.btn-accion {
+  padding: 8px 15px;
+  text-decoration: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.9rem;
+  text-align: center;
+  white-space: nowrap;
+}
+.btn-editar {
+  background-color: var(--color-primario);
+}
+.btn-editar:hover {
+  background-color: var(--color-primario-hover);
+}
+.btn-baja {
+  background-color: var(--color-atencion);
+}
+.btn-baja:hover {
+  background-color: #b02a37;
+}
+.btn-alta {
+  background-color: var(--color-exito);
+}
+.btn-alta:hover {
+  background-color: var(--color-exito-hover);
+}
+
+/* --- 4. RESPONSIVE: TABLA COMO TARJETA EN MÓVIL --- */
+@media (max-width: 992px) {
+  /* Oculta encabezado de tabla en móvil */
+
+  /* Oculta textos redundantes en portada y acciones */
+  .tabla-productos td[data-label="Portada"]::before ,
+  .tabla-productos td[data-label="Acciones"]::before {
+      display: none;
+  }
+
+  .tabla-productos thead {
+    display: none;
+  }
+
+  /* Fila como tarjeta */
+  .tabla-productos tr {
+    display: block;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    box-shadow: var(--sombra-suave);
+    padding: 1rem;
+  }
+
+  /* Portada centrada en tarjeta */
+  .tabla-productos td[data-label="Portada"] {
+    display: block;
+    text-align: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-borde);
+  }
+  .tabla-productos td[data-label="Portada"] .image-cover {
+    width: 120px;
+    height: 170px;
+    margin: 0 auto;
+  }
+
+  /* Celdas apiladas y alineadas */
+  .tabla-productos td {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 5px;
+    border-bottom: 1px solid var(--color-fondo);
+  }
+  .tabla-productos td:last-of-type {
+    border-bottom: none;
+  }
+
+  /* Muestra nombre de columna con data-label */
+  .tabla-productos td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    padding-right: 1rem;
+    color: var(--color-texto-principal);
+  }
+
+  /* Acciones centradas en tarjeta */
+  .tabla-productos .acciones {
+    justify-content: center;
+    padding-top: 1rem;
+  }
+}

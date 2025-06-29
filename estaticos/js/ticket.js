@@ -10,8 +10,10 @@ async function cargarDatosTicket() {
     return;
   }
 
-  // Si hay un ID en los parámetros de la URL, lo usamos en lugar del localStorage
+  // Si hay un ID en los parámetros de la URL, lo usamos en lugar del localStorage (el browser de puppeteer no tiene el id en su localstorage)
   const idVenta = idUrlParams || idLocalStorage;
+
+  console.log("ID de venta a cargar:", idVenta);
 
   try {
     // Realizar la solicitud para obtener los datos del ticket

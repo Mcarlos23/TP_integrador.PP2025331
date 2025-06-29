@@ -1,0 +1,132 @@
+/* --- Contenedor principal del formulario --- */
+.contenedor-formulario {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2.5rem;
+    background-color: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-borde, 10px);
+    box-shadow: var(--sombra-suave);
+}
+
+.contenedor-formulario h1 {
+    text-align: center;
+    color: var(--color-texto-principal);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.contenedor-formulario p {
+    text-align: center;
+    color: var(--color-texto-secundario);
+    margin-top: -0.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+/* --- Estructura y campos del formulario --- */
+.contenedor-formulario form {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--color-texto-secundario);
+}
+
+/* --- Inputs, selects y textarea base --- */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    background-color: var(--color-superficie);
+    color: var(--color-texto-principal);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* --- Efecto de foco en campos --- */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-primario);
+    box-shadow: var(--sombra-foco);
+}
+
+/* --- Botón de envío --- */
+.btn-submit {
+    background-color: var(--color-primario);
+    color: var(--color-superficie);
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.btn-submit:hover {
+    background-color: var(--color-primario-hover);
+}
+
+/* --- Responsive: grilla en pantallas grandes --- */
+@media (min-width: 768px) {
+    .contenedor-formulario form {
+        grid-template-columns: 1fr 1fr;
+    }
+    .form-group:has(#title),
+    .form-group:has(#description),
+    .form-group:has(#cover_image),
+    .btn-submit {
+        grid-column: 1 / -1;
+    }
+}
+
+/* --- Caja de errores reutilizable --- */
+.error-container {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: #a71d2a;
+    border: 1px solid rgba(220, 53, 69, 0.4);
+    border-left: 5px solid var(--color-atencion, #dc3545);
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+/* --- Caja de errores en modo oscuro --- */
+[data-theme="dark"] .error-container {
+    color: var(--color-atencion);
+    background-color: rgba(255, 107, 107, 0.15);
+    border-color: rgba(255, 107, 107, 0.5);
+}
+
+.error-container p {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.error-container ul {
+    list-style-position: inside;
+    padding-left: 1rem;
+}
+
+.error-container li {
+    margin-bottom: 0.25rem;
+}

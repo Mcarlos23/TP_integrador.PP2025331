@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Admin - Dashboard</title>
+        <link rel="stylesheet" href="/css/global.css">
+        <link rel="stylesheet" href="/css/historial-ventas.css">
+        <link rel="icon" href="/icon/libreria_logo.jpg" type="image/x-icon">
+    </head>
+    <body class="pagina-dashboard">
+        <%- include('header.ejs', { title: 'Dashboard' }) %>
+        <main class="contenedor-ventas">
+          <h1>Historial de Ventas</h1>
+          <div id="ventas"></div>
+        </main>
+        <%- include('footer.ejs') %>
+        <script type="module" src="/js/main.js"></script>
+        <script type="module" src="/js/historial-ventas.js"></script>
+    </body>
+</html>

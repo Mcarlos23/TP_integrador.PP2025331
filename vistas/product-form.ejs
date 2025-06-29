@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Dashboard</title>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/product-form.css">
+    <link rel="icon" href="/icon/libreria_logo.jpg" type="image/x-icon">
+</head>
+<body class="pagina-dashboard">
+    <%- include('header.ejs', { title: 'Dashboard' }) %>
+    <main class="contenedor-formulario">
+        <h1><%= isEditMode ? 'Editar Producto' : 'Cargar Nuevo Producto' %></h1>
+        <!-- Se usa enctype "multipart/form-data" para permitir la carga de archivos (imágenes). -->
+
+        <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+            <div class="error-container">
+                <p><strong>Por favor, corrige los siguientes errores:</strong></p>
+                <ul>
+                    <% errors.forEach(error => { %>
+                        <li><%= error.msg %></li>
+                    <% }) %>
+                </ul>
+            </div>
+        <% } %>
+        <form 
+            action="<%= isEditMode ? `/admin/productos/editar/${product.id}?_method=PATCH` : '/admin/productos/alta' %>" 
+            method="POST" 
+            enctype="multipart/form-data"
+        >
+            <div class="form-group">
+                <label for="title">Título:</label>
+                <input type="text" id="title" name="title" value="<%= product ? product.title : '' %>" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="author">Autor:</label>
+                <input type="text" id="author" name="author" value="<%= product ? product.author : '' %>" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="publisher">Editorial:</label>
+                <input type="text" id="publisher" name="publisher" value="<%= product ? product.publisher : '' %>" required>
+            </div>
+
+            <div class="form-group">
+                <label for="isbn">ISBN:</label>
+                <input type="text" id="isbn" name="isbn" value="<%= product ? product.isbn : '' %>" required>
+            </div>
+
+            <div class="form-group">
+                <label for="price">Precio (ARS):</label>
+                <input type="number" id="price" name="price" step="0.01" value="<%= product ? product.price : '' %>" required>
+            </div>
+
+            <div class="form-group">
+                <label for="stock">Stock:</label>
+                <input type="number" id="stock" name="stock" value="<%= product ? product.stock : '' %>" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="category">Categoría:</label>
+                <select id="category" name="category" required>
+                    <option value="" disabled selected>Selecciona una categoría</option>
+                    <option value="Libro" <%= product && product.category === 'Libro' ? 'selected' : '' %>>Libro</option>
+                    <option value="Manga" <%= product && product.category === 'Manga' ? 'selected' : '' %>>Manga</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="cover_image">Imagen de Portada:</label>
+                <!-- El atributo name debe coincidir con el que recibe el middleware para la carga de archivos -->
+                <input type="file" id="cover_image" name="cover_image" accept="image/*" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Descripción:</label>
+                <textarea id="description" name="description" rows="4"><%= product ? product.description : '' %></textarea>
+            </div>     
+                <button type="submit" class="btn-submit">
+                    <%= isEditMode ? 'Guardar Cambios' : 'Crear Producto' %>
+                </button>
+        </form>
+    </main>
+    <%- include('footer.ejs') %>
+    <script type="module" src="/js/main.js"></script>
+</body>
+</html>

@@ -179,7 +179,8 @@
 
 /* Ocultar botones al imprimir */
 @media print {
-    .contenedor-botones{
+    .contenedor-botones,
+    .btn-modo{
         display: none !important;
     }
     /* ... (resto de estilos de impresión) ... */

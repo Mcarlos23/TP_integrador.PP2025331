@@ -1,6 +1,6 @@
 //console.log("JavaScript cargado correctamente");
 // Protección de rutas en el lado del cliente
-const paginasPublicas = ['/', '/index.html'];
+const paginasPublicas = ['/', '/index.html', '/ticket.html'];
 const paginaActual = window.location.pathname;
 
 // Verificar si la página actual es pública
@@ -10,7 +10,7 @@ function validarRuta() {
     // Si no hay nombre de cliente en localStorage, redirigir a la página de inicio
     if (!nombreCliente) {
       window.location.href = '/index.html'; // Redirigir a la página de inicio
-      console.warn("No se encontró el nombre del cliente en localStorage. Redirigiendo a la página de inicio.");
+      //console.log("No se encontró el nombre del cliente en localStorage. Redirigiendo a la página de inicio.");
     }
   }
 }
@@ -41,7 +41,7 @@ function aplicarTema(tema) {
   } else {
     document.documentElement.removeAttribute('data-theme');
   }
-  // También actualizamos el ícono del botón si existe
+  // Actualizar el botón.
   const themeToggleButton = document.getElementById('theme-toggle');
   if (themeToggleButton) {
     themeToggleButton.classList.toggle('dark-mode', tema === 'dark');
@@ -68,10 +68,13 @@ function añadirEventoCambioTema() {
   });
 }
 
-validarRuta(); // Validar la ruta antes de cargar las plantillas
 cargarModo(); // Cargar el modo claro u oscuro
 
 document.addEventListener("DOMContentLoaded", async () => {
+
+  if (!paginaActual.startsWith('/admin')) {
+    // Si la página es del admin, validar la ruta
+  validarRuta(); // Validar la ruta antes de cargar las plantillas
   const contenedorHeader = document.getElementById("header");
   const contenedorFooter = document.getElementById("footer");
 
@@ -81,4 +84,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   añadirEventoCambioTema(); // Añadir el evento de cambio de tema
 
   await cargarPlantilla('footer.html', contenedorFooter);
+  añadirEventoCambioTema(); // Añadir el evento de cambio de tema
+  await cargarPlantilla('footer.html', contenedorFooter);
+  }
+
+  añadirEventoCambioTema(); // Añadir el evento de cambio de tema
+   
 });

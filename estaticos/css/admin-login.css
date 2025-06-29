@@ -1,0 +1,121 @@
+/* Centra el contenido del login en el main */
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  padding: 2rem 1rem;
+}
+
+/* Caja principal del formulario de login */
+.login-container {
+  max-width: 420px;
+  width: 100%;
+  padding: 2.5rem;
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-borde, 10px);
+  box-shadow: var(--sombra-suave);
+  text-align: center;
+}
+
+/* Título del formulario */
+.login-container h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: var(--color-texto-principal);
+}
+
+/* Mensaje de error */
+.error-message {
+  background-color: rgba(220, 53, 69, 0.1);
+  color: var(--color-atencion, #dc3545);
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--color-atencion, #dc3545);
+  text-align: left;
+}
+
+/* Estructura y espaciado del formulario */
+.login-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Grupo de campos del formulario */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+/* Etiqueta de campo */
+.form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--color-texto-secundario);
+}
+
+/* Campo de entrada */
+.form-group input {
+  padding: 12px 15px;
+  border: 1px solid var(--color-borde);
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: var(--color-superficie);
+  color: var(--color-texto-principal);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Estilo de campo enfocado */
+.form-group input:focus {
+  outline: none;
+  border-color: var(--color-primario);
+  box-shadow: var(--sombra-foco);
+}
+
+/* Botón principal de login */
+.btn-login {
+  background-color: var(--color-primario);
+  color: var(--color-superficie);
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Botón login en hover */
+.btn-login:hover {
+  background-color: var(--color-primario-hover);
+}
+
+/* Separador horizontal */
+.login-container hr {
+  border: none;
+  border-top: 1px solid var(--color-borde);
+  margin: 1.5rem 0;
+}
+
+/* Botón de acceso rápido */
+.btn-rapido {
+  background-color: transparent;
+  color: var(--color-texto-secundario);
+  border: 2px solid var(--color-borde);
+  width: 100%;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+/* Botón acceso rápido en hover */
+.btn-rapido:hover {
+  border-color: var(--color-texto-secundario);
+  background-color: var(--superficie-hover);
+}

@@ -2,6 +2,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
 const SaleProduct = sequelize.define('SaleProduct', {
+    // Por default, Sequelize crea un id autoincremental para las tablas intermedias
     quantity: {
         type: DataTypes.INTEGER,
         allowNull: false,

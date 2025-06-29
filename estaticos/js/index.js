@@ -1,4 +1,5 @@
 
+
 // Esta funcion agrega un evento al formulario para manejar el envío
 // y validar el nombre del cliente antes de redirigirlo a la página de productos.
 function agregarEventSubmit() {
@@ -6,13 +7,13 @@ function agregarEventSubmit() {
   const inputNombre = document.getElementById('nombre-input');
 
   formulario.addEventListener('submit', (event) => {
-    // 1. Prevenimos que el formulario se envíe de la forma tradicional
+    // Previene que el formulario se envíe de la forma tradicional
     event.preventDefault();
 
-    // 2. Obtenemos el valor del input y quitamos espacios en blanco
+    // Obtiene el valor del input
     const nombreCliente = inputNombre.value.trim();
 
-    // 3. Hacemos la validación de caracteres
+    // Hace la validación de caracteres
     if (nombreCliente.length >= 2 && nombreCliente.length <= 30) {
       // Si es válido, lo guardamos en localStorage
       localStorage.setItem('nombreCliente', nombreCliente);

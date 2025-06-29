@@ -15,5 +15,6 @@ rutasApi.post('/ventas', controladorApi.crearVenta);
 // Get /api/ventas/:id
 rutasApi.get('/ventas/:id/pdf', controladorApi.obtenerVentaPdfPorId);
 rutasApi.get('/ventas/:id', controladorApi.obtenerVentaPorId);
+rutasApi.get('/ventas', controladorApi.obtenerHistorialDeVentas);
 
 module.exports = rutasApi;

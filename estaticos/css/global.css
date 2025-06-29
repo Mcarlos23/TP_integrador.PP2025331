@@ -31,6 +31,7 @@
 }
 
 /* Tema oscuro: <html data-theme="dark"> */
+/* Fuente: https://dev.to/whitep4nth3r/the-best-lightdark-mode-theme-toggle-in-javascript-368f?comments_sort=latest */
 [data-theme="dark"] {
     /* Colores principales */
     --color-fondo: #121212;
@@ -67,7 +68,7 @@ body {
     color: var(--color-texto-principal);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-main { flex: 1; }
+main { flex: 1; } /* Contenedor principal que ocupa el espacio restante. Shorthand para flex-grow: 1; flex-shrink: 1; flex-basis: 0; */
 
 /* --- 3. Header y navegación (mobile-first) --- */
 .header {
@@ -134,7 +135,8 @@ main { flex: 1; }
 }
 
 /* Oculta navegación en página ticket */
-body.body-ticket .nav-principal {
+body.body-ticket .nav-principal,
+body.pagina-login .nav-principal {
     display: none;
 }
 
@@ -152,7 +154,7 @@ body.body-ticket .nav-principal {
 .btn-modo {
     background-color: var(--color-fondo); /* Usa el color de fondo de la página */
     border: 2px solid var(--color-borde);
-    border-radius: 50px; /* Lo hacemos circular */
+    border-radius: 50px; /* Lo hace circular */
     width: 50px;
     height: 50px;
     padding: 5px;
@@ -178,13 +180,13 @@ body.body-ticket .nav-principal {
     fill: var(--color-primario);
 }
 
-/* --- LA MAGIA PARA MOSTRAR/OCULTAR ÍCONOS --- */
+/* --- MOSTRAR/OCULTAR ÍCONOS (segun modo) --- */
 
-/* Por defecto (tema claro): mostramos la LUNA (para cambiar a oscuro) */
+/* Por defecto (tema claro): muestra la LUNA (para cambiar a oscuro) */
 .icon-sun { display: none; }
 .icon-moon { display: block; }
 
-/* Cuando el tema es oscuro: mostramos el SOL (para cambiar a claro) */
+/* Cuando el tema es oscuro: muestra el SOL (para cambiar a claro) */
 [data-theme="dark"] .icon-sun { display: block; }
 [data-theme="dark"] .icon-moon { display: none; }
 
@@ -198,7 +200,7 @@ body.body-ticket .nav-principal {
 }
 
 /* Por defecto (tema claro):
-   Mostramos el logo claro y ocultamos el oscuro. */
+   Muestra el logo claro y oculta el oscuro. */
 .logo-claro {
     display: block;
 }
@@ -208,7 +210,7 @@ body.body-ticket .nav-principal {
 
 
 /* Cuando el tema es oscuro (html[data-theme="dark"]):
-   Hacemos lo contrario: ocultamos el logo claro y mostramos el oscuro. */
+   Hace lo contrario: oculta el logo claro y muestra el oscuro. */
 [data-theme="dark"] .logo-claro {
     display: none;
 }
@@ -216,3 +218,40 @@ body.body-ticket .nav-principal {
 [data-theme="dark"] .logo-oscuro {
     display: block;
 }
+
+
+/* --- Estilos para el boton de logout --- */
+/* css/global.css */
+
+/* Estilo para que el botón de logout se vea como un link de navegación */
+.btn-logout {
+    /* Resetea los estilos de botón por defecto */
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    
+    /* Le da los mismos estilos que a los <a> de la navegación */
+    display: inline-block;
+    padding: 10px 20px;
+    font-family: inherit; /* Usa la fuente del resto de la página */
+    font-size: inherit; /* Usa el tamaño de fuente del resto de la nav */
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    /* Le da un color de "atención" (rojo) para indicar que es una acción de salida */
+    color: var(--color-atencion);
+    border: 2px solid var(--color-atencion);
+}
+
+.btn-logout:hover {
+    background-color: var(--color-atencion);
+    color: var(--color-superficie); /* Texto blanco/claro */
+    transform: translateY(-2px);
+}
+
+
+

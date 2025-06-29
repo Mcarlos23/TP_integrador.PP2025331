@@ -2,7 +2,6 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
 const Product = sequelize.define('Product', {
-    // --- Campos que pediste ---
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -18,7 +17,7 @@ const Product = sequelize.define('Product', {
     },
     cover_image_url: {
         type: DataTypes.STRING, // Acá almacenamos la URL o path de la imagen de la portada
-        allowNull: true // Para testear
+        allowNull: true 
     },
     price: {
         type: DataTypes.DECIMAL(10, 2), // 10 dígitos totales, 2 decimales
@@ -52,7 +51,8 @@ const Product = sequelize.define('Product', {
     }
 }, {
     // Opciones adicionales del modelo
-    tableName: 'Products' // Aseguramos que el nombre de la tabla sea 'Products'
+    // Por default Sequeliza le da nombres a las tablas en plural, pero podemos especificar el nombre
+    tableName: 'Products' 
 });
 
 module.exports = Product;

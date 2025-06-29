@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel de Administrador</title>
+  <link rel="stylesheet" href="/css/global.css">
+  <link rel="stylesheet" href="/css/crear-admin.css">
+  <link rel="icon" href="/icon/libreria_logo.jpg" type="image/x-icon">
+</head>
+<body>
+  <%- include('header.ejs') %>
+  <main class="contenedor-formulario">
+    <h1>Crear Nuevo Administrador</h1>
+    <p>Complete los datos para registrar un nuevo usuario con permisos de administrador.</p>
+
+    <% if (typeof errors !== 'undefined' && errors && errors.length > 0) { %>
+      <div class="error-container">
+        <ul>
+          <% errors.forEach(error => { %>
+            <li><%= error.msg %></li>
+          <% }); %>
+        </ul>
+      </div>
+    <% } %>
+
+    <form action="/admin/crear" method="POST">
+      <div class="form-group">
+        <label for="email">Email del Nuevo Administrador:</label>
+        <input type="email" id="email" name="email" value="<%= typeof datos_ingresados !== 'undefined' ? datos_ingresados.email : '' %>" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <button type="submit" class="btn-submit">Crear Administrador</button>
+    </form>
+  </main>
+  <%- include('footer.ejs') %>
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>
