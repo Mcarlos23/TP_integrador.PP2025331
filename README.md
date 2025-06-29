@@ -1,6 +1,6 @@
 # 📖 Punto Lector - TP Integrador
 
-Este es el proyecto integrador para la materia Programación III. Consiste en una aplicación full-stack que simula autoservicio para la compra de libro y mangas, junto con un panel de administrador para la gestión de productos.
+Este es el proyecto integrador para la materia Programación III. Consiste en una aplicación full-stack que simula autoservicio para la compra de libros y mangas, junto con un panel de administrador para la gestión de productos.
 
 ---
 
